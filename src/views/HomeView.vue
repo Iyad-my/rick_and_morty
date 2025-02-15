@@ -7,6 +7,8 @@
     </h1>
   </div>
 
+  {{ page }}
+
 
 
 
@@ -36,6 +38,8 @@ const loadCharacters = async () => {
   characters.value = data.results
 }
 
+
+const incrementPage =()
 
 onMounted(() => {
   loadCharacters()
