@@ -8,6 +8,10 @@
   </div>
 
 
+
+
+
+
   <div class="grid grid-cols-6 gap-4 mt-24 mx-10">
     <div v-for="character in characters" :key="character.id" class="rounded-2xl overflow-hidden shadow-2xl">
       <img :src="character.image" alt="character.name">
@@ -24,6 +28,7 @@
 import { onMounted, ref } from 'vue'
 
 const characters: any = ref([])
+const page: number = ref(0)
 
 const loadCharacters = async () => {
   const response = await fetch('https://rickandmortyapi.com/api/character')
