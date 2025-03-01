@@ -4,7 +4,6 @@
     <div class="flex justify-center">
       <img class="rounded-2xl w-96" :src="character.image" :alt="character.name">
     </div>
-
     <div class="flex flex-col items-center mx-auto mt-8 shadow-2xl p-4 rounded-2xl w-xl">
       <h1 class="text-3xl font-bold mb-4">{{character.name}}</h1>
       <div class=" lg:space-y-4 text-xl">
@@ -19,9 +18,10 @@
 </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import type { Character } from '@/types/character'
 
 const route = useRoute()
 const id = route.params.id
@@ -33,7 +33,6 @@ const loadCharacters = async () => {
   const data = await response.json()
   console.log(data)
   character.value = data
-  console.log(character.value)
 }
 
 onMounted(()=>{
