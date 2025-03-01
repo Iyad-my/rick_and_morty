@@ -6,19 +6,19 @@
     </h1>
   </div>
 
-
+<div class="flex flex-col items-center mt-8 ">
   <input class="border-2 border-amber-700" v-model="searchName" type="text">
   <button 
   v-for="status in statusFilters"
   :class="['bg-black text-white p-2 rounded-full', searchStatus === status ? 'bg-red-500' : 'bg-black' ]"
-  @click="searchStatus(status)"
+  @click="searchByStatus(status)"
   >
   {{ status }}
 </button>
+</div>
 
-space-x-4 mt-8">
-  <button class="border-2 borde
-  <div class="flex justify-center r-black rounded-full p-1 " @click="decrementPage">-</button>
+<div>
+  <button class="flex justify-center r-black rounded-full p-1 " @click="decrementPage">-</button>
 <div> {{ page }}</div>
 <button class="border-2 border-black rounded-full p-1 " @click="incrementPage">+</button>
 </div>
@@ -50,10 +50,12 @@ const page:any = ref(1)
 
 const statusFilters = ['All','Alive','Dead','Unknown']
 
+
 const filteredCharacters = computed(()=>{
 return characters.value.filter((character: any)=>{
   const matchName = character.name.toLowerCase().includes(searchName.value.toLowerCase())
-  return matchName
+  const mainStatus = searchStatus.value === 'All' || character.status === searchStatus.value
+  return matchName && mainStatus
   })
 })
 const searchByStatus = (status:string)=>{
